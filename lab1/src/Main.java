@@ -1,148 +1,247 @@
-class CounterSynchronized {
-    public static int counter = 0;
+interface Counter {
+    void increment();
 
-    public synchronized static void increment() {
+    void decrement();
+
+    int getCounter();
+}
+
+interface Semaphore {
+    void lock();
+
+    void unlock();
+}
+
+class CounterSynchronized implements Counter {
+    public int counter = 0;
+
+    public synchronized void increment() {
         counter += 1;
     }
 
-    public synchronized static void decrement() {
+    public synchronized void decrement() {
         counter -= 1;
     }
 
+    public int getCounter() {
+        return counter;
+    }
 }
 
-class CounterNotSynchronized {
-    public static int counter = 0;
+class CounterNotSynchronized implements Counter {
+    public int counter = 0;
 
-    public static void increment() {
+    public void increment() {
         counter += 1;
     }
 
-    public static void decrement() {
+    public void decrement() {
         counter -= 1;
     }
 
+    public int getCounter() {
+        return counter;
+    }
 }
 
-class Semaphore {
-    private boolean locked = false;
-    private int waiting = 0;
-
-    public Semaphore(int n) {
-        waiting = n;
-    }
+class BinarySemaphore implements Semaphore {
+    private boolean blocked = false;
 
     public synchronized void lock() {
-        while (waiting == 0){
+        while (blocked) {
             try {
                 this.wait();
-            } catch (InterruptedException exception){
+            } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
         }
 
-        waiting -= 1;
-        locked = true;
+        blocked = true;
     }
 
     public synchronized void unlock() {
-        waiting += 1;
-        locked = false;
+        blocked = false;
 
         this.notify();
     }
 }
 
-class KILL_ME {
-    private static Object s = new Object();
-    private static int count = 0;
-    public static void kill(){
-        for(;;){
-            new Thread(new Runnable(){
-                public void run(){
-                    synchronized(s){
-                        count += 1;
-                        System.err.println("New thread #"+count);
-                    }
-                    int i=100,j=1;
-                    for(;;){
-                        j = i * j + 1;
+
+/**
+ * W semaforze nie wystarczy tylko instukcja if
+ */
+class BinarySemaphoreWithIf implements Semaphore {
+    private boolean blocked = false;
+
+    public synchronized void lock() {
+        if (blocked) {
+            try {
+                this.wait();
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        blocked = true;
+    }
+
+    public synchronized void unlock() {
+        blocked = false;
+
+        this.notify();
+    }
+}
+
+/**
+ * semafor binarny jest szczególnym przypadkiem semafora ogólnego
+ * jeśli w semaforze binarnym użylibyśmy do sprawdzania wartosci 0 i 1 zamiast true i false
+ * to uzyskalibyśmy semafor ogólny z 1 jednostką dostępnego zasobu
+ */
+class CountingSemaphore implements Semaphore {
+    private int free;
+
+    public CountingSemaphore(int free) {
+        this.free = free;
+    }
+
+    public synchronized void lock() {
+        while (free == 0) {
+            try {
+                this.wait();
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        free -= 1;
+    }
+
+    public synchronized void unlock() {
+        free += 1;
+
+        this.notify();
+    }
+}
+
+class ThreadCounterTest {
+    Thread t1, t2;
+    long s, t;
+    Counter counter;
+
+    public ThreadCounterTest(int n, Counter counter) {
+        this.counter = counter;
+        t1 = new Thread(() -> {
+            for (int i = 0; i < n; i++) {
+                counter.increment();
+            }
+        });
+        t2 = new Thread(() -> {
+            for (int i = 0; i < n; i++) {
+                counter.decrement();
+            }
+        });
+    }
+
+    public ThreadCounterTest(int n, Counter counter, Semaphore semaphore) {
+        this.counter = counter;
+        t1 = new Thread(() -> {
+            for (int i = 0; i < n; i++) {
+                semaphore.lock();
+                counter.increment();
+                semaphore.unlock();
+            }
+        });
+        t2 = new Thread(() -> {
+            for (int i = 0; i < n; i++) {
+                semaphore.lock();
+                counter.decrement();
+                semaphore.unlock();
+            }
+        });
+    }
+
+
+    void run() throws InterruptedException {
+        s = System.currentTimeMillis();
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+
+        t = System.currentTimeMillis();
+    }
+
+    public void printTimes() {
+        System.out.println("Counter: " + counter.getCounter());
+        System.out.println("time: " + (t - s) * 0.001 + " s\n");
+    }
+
+    public void printTimes(String msg) {
+        System.out.println(msg);
+        printTimes();
+    }
+}
+
+class MaxThreadTest {
+    public static void testWithComputations() {
+        int count = 0;
+        while (true) {
+            new Thread(() -> {
+                int i = 100, j = 50;
+                while (true) {
+                    i = j + i * j;
+                    j = i - j * i;
+                }
+            }).start();
+            System.out.println("Thread nr " + count);
+            count += 1;
+        }
+    }
+
+    public static void testSleep() {
+        int count = 0;
+        while (true) {
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(Integer.MAX_VALUE);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
             }).start();
+            System.out.println("Thread nr " + count);
+            count += 1;
         }
     }
 }
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        int n = (int) 10e6 ;
+        int n = (int) 2e7;
 
-        long s;
-        long t;
-
-
-        Thread t1 = new Thread(() -> {
-            for (int i = 0; i < n; i++) {
-                CounterSynchronized.increment();
-            }
-        });
-        Thread t2 = new Thread(() -> {
-            for (int i = 0; i < n; i++) {
-                CounterSynchronized.decrement();
-            }
-        });
+        ThreadCounterTest counterNotSynchronized = new ThreadCounterTest(n, new CounterNotSynchronized());
+        ThreadCounterTest counterSynchronized = new ThreadCounterTest(n, new CounterSynchronized());
+        ThreadCounterTest counterWithBinarySemaphore = new ThreadCounterTest(n, new CounterNotSynchronized(), new BinarySemaphore());
+        ThreadCounterTest counterWithIfSemaphore = new ThreadCounterTest(n, new CounterNotSynchronized(), new BinarySemaphoreWithIf());
+        ThreadCounterTest counterWithCountingSemaphore = new ThreadCounterTest(n, new CounterNotSynchronized(), new CountingSemaphore(1));
 
 
-        s = System.currentTimeMillis();
-        t1.start();
-        t2.start();
+        counterNotSynchronized.run();
+        counterSynchronized.run();
+        counterWithBinarySemaphore.run();
+        counterWithIfSemaphore.run();
+        counterWithCountingSemaphore.run();
 
 
-        t1.join();
-        t2.join();
+        counterNotSynchronized.printTimes("Not synchronized counter");
+        counterSynchronized.printTimes("Synchronized counter");
+        counterWithBinarySemaphore.printTimes("Counter with binary semaphore");
+        counterWithIfSemaphore.printTimes("Counter with IF statement semaphore");
+        counterWithCountingSemaphore.printTimes("Counter with counting semaphore");
 
-        t = System.currentTimeMillis();
-
-        System.out.println("Counter: " + CounterSynchronized.counter);
-        System.out.println("time: " + (t - s) + " ms");
-
-
-        Semaphore sem = new Semaphore(1);
-
-
-        t1 = new Thread(() -> {
-            for (int i = 0; i < n; i++) {
-                sem.lock();
-                CounterNotSynchronized.increment();
-                sem.unlock();
-            }
-        });
-        t2 = new Thread(() -> {
-            for (int i = 0; i < n; i++) {
-                sem.lock();
-                CounterNotSynchronized.decrement();
-                sem.unlock();
-            }
-        });
-
-        s = System.currentTimeMillis();
-
-        t1.start();
-        t2.start();
-
-
-        t1.join();
-        t2.join();
-        t = System.currentTimeMillis();
-
-        System.out.println("Counter: " + CounterNotSynchronized.counter);
-        System.out.println("time: " + (t - s) + " ms");
-
-//        KILL_ME.kill();
-
-
-
-
+//        MaxThreadTest.testWithComputations();
+//        MaxThreadTest.testSleep();
     }
 }
