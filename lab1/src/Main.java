@@ -68,7 +68,13 @@ class BinarySemaphore implements Semaphore {
 
 
 /**
- * W semaforze nie wystarczy tylko instukcja if
+ * W semaforze nie wystarczy tylko instukcja if, ponieważ
+ * może nastąpić sytuacja, że dwa wątki będą czekać na odblokowanie zasobu,
+ * w momencie gdy zwolni się jedna jednostka oba wyjdą
+ * z instrukcji if i zaczną wykonywać operacje - spowoduje błedy
+ *
+ * w przypadku instrukcji while - obudzi się jeden wątek i ustawi znów flage (informujac ze jest zablokowany),
+ * przez co drugi proces zostanie w pętli while - nie spowoduje błędów
  */
 class BinarySemaphoreWithIf implements Semaphore {
     private boolean blocked = false;
@@ -219,7 +225,7 @@ class MaxThreadTest {
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        int n = (int) 2e7;
+        int n = (int) 2e6;
 
         ThreadCounterTest counterNotSynchronized = new ThreadCounterTest(n, new CounterNotSynchronized());
         ThreadCounterTest counterSynchronized = new ThreadCounterTest(n, new CounterSynchronized());
