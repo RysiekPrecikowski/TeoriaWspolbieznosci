@@ -13,7 +13,7 @@ interface Semaphore {
 }
 
 class CounterSynchronized implements Counter {
-    public int counter = 0;
+    private int counter = 0;
 
     public synchronized void increment() {
         counter += 1;
@@ -29,7 +29,7 @@ class CounterSynchronized implements Counter {
 }
 
 class CounterNotSynchronized implements Counter {
-    public int counter = 0;
+    private int counter = 0;
 
     public void increment() {
         counter += 1;
