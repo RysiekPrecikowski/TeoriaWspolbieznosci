@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a330ecf0-9a0a-49cb-a255-2b422332d030" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2.old/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2_async.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/lab2_poprawioned.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/Fork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/Philosopher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/PhilosopherStarvation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/PhilosopherWaiter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/Table.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab2_poprawioned/src/main/java/Waiter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TeoriaWspółbieżności.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../TeoriaWspółbieżności.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/async/idk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2.old/async/idk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/lab2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2.old/lab2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2.old/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/src/main/java/Main.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="20VOUzbd9PPXDrJqXTWqOnh0xNy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.17.32" />
+    <property name="nodejs_interpreter_path" value="$APPLICATION_CONFIG_DIR$/node/node-v14.15.0-win-x64/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.main.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a330ecf0-9a0a-49cb-a255-2b422332d030" name="Changes" comment="" />
+      <created>1636126310865</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636126310865</updated>
+      <workItem from="1636126312108" duration="595000" />
+      <workItem from="1636130674087" duration="101000" />
+      <workItem from="1636130811648" duration="1287000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
