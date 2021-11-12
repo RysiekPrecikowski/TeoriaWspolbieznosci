@@ -15,7 +15,6 @@ public class PJ extends AbstractProduction<Vertex> {
     public Vertex apply(Vertex s) {
         System.out.println("pJ");
 
-
         Vertex t = s.getNorth().getWest().getSouth();
         s.setWest(t);
         t.setEast(s);
