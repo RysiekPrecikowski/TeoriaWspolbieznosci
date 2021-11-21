@@ -1,4 +1,7 @@
+/node_modules
 /lab1/out/
 /lab1/target/
 /lab2.old/
-
+/lab2/target
+/lab4/target
+/lab4_domowe/target
