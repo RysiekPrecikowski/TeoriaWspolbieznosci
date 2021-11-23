@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/lab2/lab2_poprawioned.iml" filepath="$PROJECT_DIR$/lab2/lab2_poprawioned.iml" />
       <module fileurl="file://$PROJECT_DIR$/lab4/lab4.iml" filepath="$PROJECT_DIR$/lab4/lab4.iml" />
       <module fileurl="file://$PROJECT_DIR$/lab4_domowe/lab4_domowe.iml" filepath="$PROJECT_DIR$/lab4_domowe/lab4_domowe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab5/lab5.iml" filepath="$PROJECT_DIR$/lab5/lab5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab5_poprawioned/lab5_poprawioned.iml" filepath="$PROJECT_DIR$/lab5_poprawioned/lab5_poprawioned.iml" />
     </modules>
   </component>
 </project>
