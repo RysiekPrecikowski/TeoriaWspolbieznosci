@@ -34,8 +34,7 @@ class Solution(
 
 
 
-  val fnfFromGraph = MultipleFNFFromGraph(graph)
-
-  fnfFromGraph.printFNFs
-
+  val fnfFromGraph = new FNF
+  fnfFromGraph.calculateFromDiekerGraph(graph)
+  fnfFromGraph.printFNF
 }

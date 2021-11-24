@@ -2,9 +2,9 @@ import scala.collection.mutable.{ListBuffer, Map}
 
 class FNF {
   val FNF = ListBuffer.empty[ListBuffer[Transaction]]
-  
-  
-  def calculateFromDependenceRelation(word: List[Transaction], dependenceRelation: DependenceRelation) = {
+
+
+  def calculateFromDependenceRelation(word: List[Transaction], dependenceRelation: DependenceRelation): Unit = {
     val matrix = dependenceRelation.matrix
 
     var used = List.fill(word.size)(false)
@@ -34,14 +34,34 @@ class FNF {
         updateBlocked(t2)
       }
     }
-    
+
     if (!used(word.size - 1)) {
       FNF += ListBuffer()
       FNF.last.addOne(word(word.size - 1))
     }
   }
-  
-  
+
+  def calculateFromDiekerGraph(diekertGraph: DiekertGraph): Unit ={
+    val next = scala.collection.mutable.Set.empty[Transaction]
+
+    FNF += ListBuffer()
+    for (i <- 0 until diekertGraph.graph.size){
+      var curr = diekertGraph.graph(i)
+
+      if (next.contains(curr._1)){
+        next.clear()
+        FNF += ListBuffer()
+      }
+
+      FNF.last.addOne(curr._1)
+
+      for(t <- curr._2) next.addOne(t)
+    }
+
+    FNF += diekertGraph.graph.last._2
+  }
+
+
 
   def printFNF: Unit = {
     print("FNF = ")
@@ -52,6 +72,6 @@ class FNF {
     }
     println
   }
-  
+
 
 }
