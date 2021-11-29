@@ -32,7 +32,7 @@ public class Excecutor {
     }
 
     void FA(int r) throws InterruptedException {
-        List<Thread> threads = new ArrayList<>();
+        List<Thread> threads = new LinkedList<>();
         for (int i = r+1; i < n; i++) {
             int finalI = i;
             threads.add(new Thread(() -> A(r, finalI)));
@@ -41,7 +41,7 @@ public class Excecutor {
     }
 
     void FB(int r) throws InterruptedException {
-        List<Thread> threads = new ArrayList<>();
+        List<Thread> threads = new LinkedList<>();
 
         for (int i = r+1; i < n; i++) {
             for (int j = r ; j < n + 1 ; j++) {
@@ -55,7 +55,7 @@ public class Excecutor {
     }
 
     void FC(int r) throws InterruptedException {
-        List<Thread> threads = new ArrayList<>();
+        List<Thread> threads = new LinkedList<>();
 
         for (int i = r+1; i < n; i++) {
             for (int j = r ; j < n + 1; j++) {
