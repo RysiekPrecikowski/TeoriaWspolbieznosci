@@ -23,7 +23,7 @@ public class Graph {
 
         @Override
         public String toString() {
-            return "\"A_" + i + "," + k+"\"";
+            return "\"A_" + (i+1) + "," + (k+1)+"\"";
         }
     }
 
@@ -39,7 +39,7 @@ public class Graph {
 
         @Override
         public String toString() {
-            return "\"B_" + i + "," + j + "," + k+"\"";
+            return "\"B_" + (i+1) + "," + (j+1) + "," + (k+1)+"\"";
         }
     }
 
@@ -55,7 +55,7 @@ public class Graph {
 
         @Override
         public String toString() {
-            return "\"C_" + i + "," + j + "," + k+"\"";
+            return "\"C_" + (i+1) + "," + (j+1) + "," + (k+1)+"\"";
         }
     }
 
@@ -114,7 +114,7 @@ public class Graph {
                                 if (j1 == j2 && k1 == i2 && i1 == i2-1 && j1 != i2)
                                     edges.add(new Edge(Type.E3, VC.get(i1).get(j1).get(k1), VB.get(i2).get(j2).get(k2)));
 
-                                if (i2 == j1 && (k2 == k1 || i2 == k1) && i1 == i2 -1 && j2 == i2)
+                                if (i2 == j1 && (k2 == k1 || i2 == k1) && i1 == i2 -1 && j2 == i2) // j2 tylko przez te dzikie fory, zehy tylko raz sie wykonywalo
                                     edges.add(new Edge(Type.E4, VC.get(i1).get(j1).get(k1), VA.get(i2).get(k2)));
 
                                 if (i1 == i2 - 1 && j1 == j2 && k1 == k2 && i2 != j1)

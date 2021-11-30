@@ -33,9 +33,9 @@ public class Excecutor {
 
     void FA(int r) throws InterruptedException {
         List<Thread> threads = new LinkedList<>();
-        for (int i = r+1; i < n; i++) {
-            int finalI = i;
-            threads.add(new Thread(() -> A(r, finalI)));
+        for (int k = r+1; k < n; k++) {
+            int finalK = k;
+            threads.add(new Thread(() -> A(r, finalK)));
         }
         runThreads(threads);
     }
@@ -43,12 +43,12 @@ public class Excecutor {
     void FB(int r) throws InterruptedException {
         List<Thread> threads = new LinkedList<>();
 
-        for (int i = r+1; i < n; i++) {
-            for (int j = r ; j < n + 1 ; j++) {
-                int finalI = i;
+        for (int j = r ; j < n + 1 ; j++) {
+            for (int k = r+1; k < n; k++) {
+                int finalK = k;
                 int finalJ = j;
 
-                threads.add(new Thread(() -> B(r, finalJ, finalI)));
+                threads.add(new Thread(() -> B(r, finalJ, finalK)));
             }
         }
         runThreads(threads);
@@ -57,12 +57,12 @@ public class Excecutor {
     void FC(int r) throws InterruptedException {
         List<Thread> threads = new LinkedList<>();
 
-        for (int i = r+1; i < n; i++) {
-            for (int j = r ; j < n + 1; j++) {
-                int finalI = i;
+        for (int j = r ; j < n + 1 ; j++) {
+            for (int k = r+1; k < n; k++) {
+                int finalK = k;
                 int finalJ = j;
 
-                threads.add(new Thread(() -> C(r, finalJ, finalI)));
+                threads.add(new Thread(() -> C(r, finalJ, finalK)));
             }
         }
         runThreads(threads);
@@ -93,7 +93,7 @@ public class Excecutor {
 //            System.out.println();
 //        }
 
-        Graph g = new Graph(4);
+        Graph g = new Graph(8);
         g.print();
 
         return this.M;
