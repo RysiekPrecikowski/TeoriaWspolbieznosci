@@ -78,6 +78,8 @@ public class Excecutor {
         c = new double[n-1][n+1][n];
 
         for (int r = 0 ; r < n-1; r+=1){
+            if (r % ((n-1) / 10) == 0)
+                System.out.println("r = " + (r+1) + " / " + n);
             FA(r);
             FB(r);
             FC(r);
@@ -103,6 +105,4 @@ public class Excecutor {
         }
         return this.M;
     }
-
-
 }

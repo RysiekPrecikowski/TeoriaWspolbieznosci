@@ -2,17 +2,16 @@ import java.util.*;
 import java.util.List;
 
 public class Graph {
-    int n;
+    private final int n;
 
+    private enum Type {E1, E2, E3, E4, E5}
 
-    enum Type {E1, E2, E3, E4, E5}
-
-    abstract class Vertex{
+    private abstract static class Vertex{
         int r;
         abstract public String toString();
     }
 
-    class A extends Vertex{
+    private static class A extends Vertex{
         int i, k;
 
         public A(int i, int k) {
@@ -27,7 +26,7 @@ public class Graph {
         }
     }
 
-    class B extends Vertex{
+    private static class B extends Vertex{
         int i, j, k;
 
         public B(int i, int j, int k) {
@@ -43,7 +42,7 @@ public class Graph {
         }
     }
 
-    class C extends Vertex{
+    private static class C extends Vertex{
         int i, j, k;
 
         public C(int i, int j, int k) {
@@ -61,7 +60,7 @@ public class Graph {
 
 
 
-    class Edge{
+    private static class Edge{
         Type type;
         Vertex v1, v2;
 
@@ -73,17 +72,17 @@ public class Graph {
     }
 
 
-    List<Edge> edges = new LinkedList<>();
-    Map<Integer, Map<Integer, Vertex>> VA = new HashMap<>();
-    Map<Integer, Map<Integer, Map<Integer, Vertex>>> VB = new HashMap<>();
-    Map<Integer, Map<Integer, Map<Integer, Vertex>>>  VC = new HashMap<>();
-
+    private final List<Edge> edges = new LinkedList<>();
 
 
     public Graph(int n) {
         this.n = n;
+        Map<Integer, Map<Integer, Vertex>> VA = new HashMap<>();
+        Map<Integer, Map<Integer, Map<Integer, Vertex>>> VB = new HashMap<>();
+        Map<Integer, Map<Integer, Map<Integer, Vertex>>> VC = new HashMap<>();
 
-        for(int i = 0 ; i < n-1 ; i++){
+
+        for(int i = 0; i < n-1 ; i++){
             VA.put(i, new HashMap<>());
             VB.put(i, new HashMap<>());
             VC.put(i, new HashMap<>());
@@ -129,7 +128,7 @@ public class Graph {
 
     }
 
-    void print_sth(Set<Vertex> a, int g, int b){
+    private void print_sth(Set<Vertex> a, int g, int b){
         StringBuilder rank = new StringBuilder("{rank = same; ");
         for (Vertex v : a){
             String color = Integer.toHexString(255 / n * (r+1)) + Integer.toHexString(g) + Integer.toHexString(b);
@@ -140,7 +139,7 @@ public class Graph {
         System.out.println(rank);
     }
 
-    void printcolors(){
+    private void printcolors(){
         print_sth(a, 50, 50);
         print_sth(b, 150, 150);
         print_sth(c, 100, 100);
@@ -151,7 +150,7 @@ public class Graph {
 
     }
 
-    void add_to_set(Vertex v){
+    private void add_to_set(Vertex v){
         if (v.r != r)
             return;
         if (A.class.equals(v.getClass())) {
@@ -163,10 +162,12 @@ public class Graph {
         }
     }
 
-    Set<Vertex> a = new HashSet<>();
-    Set<Vertex> b = new HashSet<>();
-    Set<Vertex> c = new HashSet<>();
-    int r = 0;
+    private final Set<Vertex> a = new HashSet<>();
+    private final Set<Vertex> b = new HashSet<>();
+    private final Set<Vertex> c = new HashSet<>();
+    private int r = 0;
+
+
     public void print(){
         System.out.println("digraph g {");
 

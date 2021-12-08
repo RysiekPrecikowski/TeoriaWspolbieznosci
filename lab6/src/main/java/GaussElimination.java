@@ -48,28 +48,5 @@ public class GaussElimination {
             System.out.print(res[j][n] + " ");
         }
         System.out.println();
-
-//        for(int i = 0 ; i < n-1 ; i++){
-//            for (int k = i+1 ; k < n ; k++){
-//                double m = M[k][i] / M[i][i];
-//                for (int j = i ; j < n+1 ; j++){
-//                    double c = M[i][j] * m;
-//                    M[k][j] -= c;
-//                }
-//            }
-//        }
-//
-//
-//
-//        for(int i = 0 ; i < n ; i++) {
-//            for (int j = 0; j < n + 1; j++) {
-//                if (abs(M[i][j] - res[i][j]) > 1e-12){
-//                    System.out.println("XXXXXXXXXXXX");
-//                }
-//            }
-//        }
-
-//        Graph g = new Graph(n);
-//        g.print();
     }
 }
